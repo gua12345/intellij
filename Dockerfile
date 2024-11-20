@@ -1,7 +1,8 @@
 #
 # InteiilJ IDEA + OpenJDK 8
 #
-FROM ubuntu
+# 使用 ARM64 的 Debian Slim 基础镜像
+FROM debian:bullseye-slim
 
 # Get the python script required for "add-apt-repository"
 # Configure the openjdk repo
