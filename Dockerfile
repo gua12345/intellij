@@ -1,8 +1,8 @@
 #
 # InteiilJ IDEA + OpenJDK 8
 #
-# 使用 ARM64 的 Ubuntu 基础镜像
-FROM ubuntu:20.04
+# 使用 ARM64 的 Debian Slim 基础镜像
+FROM debian:bullseye-slim
 
 # Get the python script required for "add-apt-repository"
 # Configure the openjdk repo
@@ -11,15 +11,15 @@ RUN apt-get update \
 	&& add-apt-repository ppa:openjdk-r/ppa
 
 # Install OpenJDK 8, X11 libraries, and wget
-RUN add-apt-repository ppa:webupd8team/java && apt-get update \
-	&& apt-get install -y \ 
-		curl \
-		libxext-dev libxrender-dev libxtst-dev \
-		openjdk-8-jdk \
-		wget \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /tmp/*
+RUN apt-get update \
+    && apt-get install -y \
+        curl \
+        libxext-dev libxrender-dev libxtst-dev \
+        openjdk-8-jdk \
+        wget \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /tmp/*
 
 # wget IntelliJ IDEA 
 ENV INTELLIJ_URL=https://download.jetbrains.com/idea/ideaIC-2017.2-no-jdk.tar.gz
